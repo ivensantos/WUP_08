@@ -34,3 +34,17 @@ predict(simp,new,se.fit=TRUE)
 ```
 ## Surely there is another variable that can better predict LENGTH than NECK. Find one and compare its performance to that of neck by it value of Adjusted-Rsquared (bigger is better).
 
+```{r}
+chesty <- lm(LENGTH~CHEST,data=bears)
+plot(LENGTH~CHEST,data=bears)
+abline(simp)
+summary.lm(simp)
+```
+The adjusted R-square for this model (CHEST) is 0.79; the model for NECK had an adjusted R-square of 0.75
+So far the best is the one based on CHEST
+
+```{r}
+new <- data.frame(CHEST=c(17,22,26))
+predict(chesty,new)
+predict(chesty,new,se.fit=TRUE)
+```
